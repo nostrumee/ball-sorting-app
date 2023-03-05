@@ -40,9 +40,4 @@ public class BallRepositoryImpl implements BallRepository {
     public Optional<List<Ball>> findAll() {
         return Optional.of(balls);
     }
-
-    @Override
-    public void add(Ball ball) {
-        balls.add(ball);
-    }
 }

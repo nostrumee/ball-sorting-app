@@ -18,9 +18,7 @@ public class BallComparator implements Comparator<Ball> {
     private final Set<Comparator<Ball>> comparatorSet;
 
     private BallComparator(Set<Comparator<Ball>> comparatorSet) throws SortingParametersNotSpecifiedException {
-        if (comparatorSet.isEmpty()) {
-            throw new SortingParametersNotSpecifiedException("Sorting parameters not specified");
-        }
+
         this.comparatorSet = comparatorSet;
     }
 
@@ -59,6 +57,9 @@ public class BallComparator implements Comparator<Ball> {
 
         public BallComparator build()  {
             try {
+                if (comparatorSet.isEmpty()) {
+                    throw new SortingParametersNotSpecifiedException("Sorting parameters not specified");
+                }
                 return new BallComparator(comparatorSet);
             } catch (SortingParametersNotSpecifiedException e) {
                 //log.error(e.getMessage());

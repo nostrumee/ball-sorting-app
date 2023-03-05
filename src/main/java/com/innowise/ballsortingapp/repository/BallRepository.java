@@ -9,6 +9,4 @@ public interface BallRepository {
 
     Optional<List<Ball>> findAll();
 
-    void add(Ball ball);
-
 }
