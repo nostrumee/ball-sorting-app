@@ -1,11 +1,9 @@
 package com.innowise.ballsortingapp.service;
 
-import com.innowise.ballsortingapp.entity.Ball;
-
-import java.util.List;
+import com.innowise.ballsortingapp.entity.Basket;
 
 public interface SortingService {
 
-    void sort(List<Ball> listOfBalls, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm);
+    void sort(Basket basket, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm);
 
 }

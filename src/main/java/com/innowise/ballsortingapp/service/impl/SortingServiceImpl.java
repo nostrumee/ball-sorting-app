@@ -1,11 +1,10 @@
 package com.innowise.ballsortingapp.service.impl;
 
-import com.innowise.ballsortingapp.entity.Ball;
+import com.innowise.ballsortingapp.entity.Basket;
 import com.innowise.ballsortingapp.service.BallComparator;
 import com.innowise.ballsortingapp.service.SortingAlgorithm;
 import com.innowise.ballsortingapp.service.SortingService;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -37,7 +36,7 @@ public class SortingServiceImpl implements SortingService {
     }
 
     @Override
-    public void sort(List<Ball> listOfBalls, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm) {
-
+    public void sort(Basket basket, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm) {
+        
     }
 }
