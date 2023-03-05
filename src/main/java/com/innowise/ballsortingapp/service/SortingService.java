@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SortingService {
 
-    void sort(List<Ball> listOfBalls, SortingAlgorithm sortingAlgorithm);
+    void sort(List<Ball> listOfBalls, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm);
 
 }
