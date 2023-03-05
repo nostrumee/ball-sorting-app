@@ -16,7 +16,10 @@ public class SortingServiceImpl implements SortingService {
 
     private final Set<Comparator<Ball>> comparatorSet;
 
-    private SortingServiceImpl(Set<Comparator<Ball>> comparatorSet) {
+    private SortingServiceImpl(Set<Comparator<Ball>> comparatorSet) throws SortingParametersNotSpecifiedException {
+        if (comparatorSet.isEmpty()) {
+            throw new SortingParametersNotSpecifiedException("Sorting parameters not specified");
+        }
         this.comparatorSet = comparatorSet;
     }
 
@@ -52,12 +55,13 @@ public class SortingServiceImpl implements SortingService {
             return this;
         }
 
-        public SortingService build() throws SortingParametersNotSpecifiedException {
-            if (comparatorSet.isEmpty()) {
-                //log.error()
-                throw new SortingParametersNotSpecifiedException();
+        public SortingService build()  {
+            try {
+                return new SortingServiceImpl(comparatorSet);
+            } catch (SortingParametersNotSpecifiedException e) {
+                //log.error(e.getMessage());
+                throw new RuntimeException(e);
             }
-            return new SortingServiceImpl(comparatorSet);
         }
 
     }
