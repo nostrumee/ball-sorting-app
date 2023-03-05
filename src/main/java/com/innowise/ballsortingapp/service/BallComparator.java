@@ -65,4 +65,14 @@ public class BallComparator {
             }
         }
     }
+
+    public int compare(Ball oneBall, Ball anotherBall) {
+        for (Comparator<Ball> comparator : comparatorSet) {
+            int result = comparator.compare(oneBall, anotherBall);
+            if (result != 0) {
+                return result;
+            }
+        }
+        return 0;
+    }
 }
