@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class BallComparator {
+public class BallComparator implements Comparator<Ball> {
 
     private static final Comparator<Ball> BY_TYPE = Comparator.comparingInt(ball -> ball.getType().ordinal());
     private static final Comparator<Ball> BY_PRODUCER = Comparator.comparingInt(ball -> ball.getProducer().ordinal());
@@ -29,6 +29,7 @@ public class BallComparator {
     }
 
     public static class Builder {
+
         private final Set<Comparator<Ball>> comparatorSet = new LinkedHashSet<>();
 
         public Builder byType() {
@@ -66,6 +67,7 @@ public class BallComparator {
         }
     }
 
+    @Override
     public int compare(Ball oneBall, Ball anotherBall) {
         for (Comparator<Ball> comparator : comparatorSet) {
             int result = comparator.compare(oneBall, anotherBall);
