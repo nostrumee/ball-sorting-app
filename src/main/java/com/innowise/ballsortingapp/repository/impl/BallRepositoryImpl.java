@@ -7,14 +7,41 @@ import com.innowise.ballsortingapp.entity.Type;
 import com.innowise.ballsortingapp.repository.BallRepository;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BallRepositoryImpl implements BallRepository {
 
+    private static BallRepository instance;
+    private static final Lock lock = new ReentrantLock();
+    private static final AtomicBoolean created = new AtomicBoolean(false);
+
     private final List<Ball> balls;
+
+    private BallRepositoryImpl() {
+
+    }
+
+    public static BallRepository getInstance() {
+        if (!created.get()) {
+            try {
+                lock.lock();
+                if (instance == null) {
+                    instance = new BallRepositoryImpl();
+                    created.set(true);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        return instance;
+    }
+
+
 
     {
         balls = Arrays.asList(
