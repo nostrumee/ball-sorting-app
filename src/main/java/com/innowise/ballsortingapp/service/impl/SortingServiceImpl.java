@@ -37,6 +37,6 @@ public class SortingServiceImpl implements SortingService {
 
     @Override
     public void sort(Basket basket, BallComparator ballComparator, SortingAlgorithm sortingAlgorithm) {
-        
+
     }
 }

@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface BallRepository {
 
-    Optional<List<Ball>> findAll();
+    List<Ball> findAll();
 
 }

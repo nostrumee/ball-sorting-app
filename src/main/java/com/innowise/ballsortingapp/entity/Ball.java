@@ -2,10 +2,12 @@ package com.innowise.ballsortingapp.entity;
 
 import com.innowise.ballsortingapp.service.BallIdGenerator;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 public class Ball {
     private long id;
     private Type type;

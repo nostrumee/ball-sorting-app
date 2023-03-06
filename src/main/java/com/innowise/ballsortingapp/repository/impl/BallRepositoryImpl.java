@@ -7,13 +7,14 @@ import com.innowise.ballsortingapp.entity.Type;
 import com.innowise.ballsortingapp.repository.BallRepository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class BallRepositoryImpl implements BallRepository {
 
-    private List<Ball> balls;
+    private final List<Ball> balls;
 
     {
         balls = Arrays.asList(
@@ -37,7 +38,7 @@ public class BallRepositoryImpl implements BallRepository {
 
 
     @Override
-    public Optional<List<Ball>> findAll() {
-        return Optional.of(balls);
+    public List<Ball> findAll() {
+        return balls;
     }
 }
