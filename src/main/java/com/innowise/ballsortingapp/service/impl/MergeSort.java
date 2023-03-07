@@ -58,7 +58,7 @@ public class MergeSort implements SortingAlgorithm {
             int k = 0;
 
             while (i < left.size() && j < right.size()) {
-                if (ballComparator.compare(left.get(i), right.get(j)) < 1) {
+                if (ballComparator.compare(left.get(i), right.get(j)) < 0) {
                     balls.set(k++, left.get(i++));
                 } else {
                     balls.set(k++, right.get(j++));
