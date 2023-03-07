@@ -25,7 +25,7 @@ public class BallRepositoryImpl implements BallRepository {
     {
         balls = Arrays.asList(
                 new Ball(Type.BASEBALL, Producer.MIKASA, Color.GREEN, 1, new BigDecimal("1.36")),
-                new Ball(Type.FOOTBALL, Producer.MOLTEN, Color.PURPLE, 5, new BigDecimal("10.54")),
+                new Ball(Type.FOOTBALL, Producer.MOLTEN, Color.PURPLE, 4, new BigDecimal("10.54")),
                 new Ball(Type.BASEBALL, Producer.SELECT, Color.GREEN, 2, new BigDecimal("30.56")),
                 new Ball(Type.VOLLEYBALL, Producer.JOGEL, Color.ORANGE, 6, new BigDecimal("7.98")),
                 new Ball(Type.HANDBALL, Producer.WILSON, Color.RED, 3, new BigDecimal("15.64")),
@@ -33,12 +33,13 @@ public class BallRepositoryImpl implements BallRepository {
                 new Ball(Type.VOLLEYBALL, Producer.MIKASA, Color.BLUE, 5, new BigDecimal("13.58")),
                 new Ball(Type.BASKETBALL, Producer.SELECT, Color.GREEN, 2, new BigDecimal("0.25")),
                 new Ball(Type.VOLLEYBALL, Producer.WILSON, Color.YELLOW, 4, new BigDecimal("10.75")),
-                new Ball(Type.FOOTBALL, Producer.JOGEL, Color.ORANGE, 3, new BigDecimal("15.2")),
+                new Ball(Type.FOOTBALL, Producer.JOGEL, Color.ORANGE, 11, new BigDecimal("15.2")),
                 new Ball(Type.BASKETBALL, Producer.MIKASA, Color.RED, 8, new BigDecimal("5.25")),
                 new Ball(Type.VOLLEYBALL, Producer.MOLTEN, Color.BLUE, 7, new BigDecimal("10.3")),
                 new Ball(Type.BASEBALL, Producer.SELECT, Color.PURPLE, 9, new BigDecimal("5.65")),
                 new Ball(Type.HANDBALL, Producer.MOLTEN, Color.GREEN, 5, new BigDecimal("22.55")),
-                new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 4, new BigDecimal("15.64"))
+                new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 4, new BigDecimal("15.64")),
+                new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 5, new BigDecimal("15.64"))
         );
     }
 
@@ -64,7 +65,7 @@ public class BallRepositoryImpl implements BallRepository {
 
     @Override
     public List<Ball> findAll() throws RepositoryException {
-        if (balls != null && balls.isEmpty()) {
+        if (balls != null && !balls.isEmpty()) {
             return balls;
         } else {
             throw new RepositoryException("can't get any balls from repository");

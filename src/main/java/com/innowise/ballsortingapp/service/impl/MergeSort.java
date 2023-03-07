@@ -27,7 +27,7 @@ public class MergeSort implements SortingAlgorithm {
 
         @Override
         public void compute() {
-            if (balls.size() > threshold) {
+            if (balls.size() >= threshold) {
                 int mid = balls.size() / 2;
                 List<Ball> left = new ArrayList<>(balls.subList(0, mid));
                 List<Ball> right = new ArrayList<>(balls.subList(mid, balls.size()));
