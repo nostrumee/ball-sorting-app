@@ -9,6 +9,7 @@ import com.innowise.ballsortingapp.service.SortingAlgorithm;
 import com.innowise.ballsortingapp.service.SortingService;
 import com.innowise.ballsortingapp.service.impl.BallServiceImpl;
 import com.innowise.ballsortingapp.service.impl.MergeSort;
+import com.innowise.ballsortingapp.service.impl.QuickSort;
 import com.innowise.ballsortingapp.service.impl.SortingServiceImpl;
 import com.innowise.ballsortingapp.util.BallComparator;
 
@@ -22,7 +23,7 @@ public class App {
         List<Ball> balls = ballService.getAll();
         Basket basket = new Basket(balls);
         basket.getBalls().forEach(System.out::println);
-        SortingAlgorithm mergeSort = new MergeSort();
+        SortingAlgorithm mergeSort = QuickSort.getInstance();
         SortingService sortingService = SortingServiceImpl.getInstance();
         Comparator<Ball> ballComparator = BallComparator.byPrice();
         sortingService.sort(basket, ballComparator, mergeSort);

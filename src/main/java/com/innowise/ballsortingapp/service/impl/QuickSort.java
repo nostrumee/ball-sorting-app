@@ -8,10 +8,37 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class QuickSort implements SortingAlgorithm {
 
+    private static SortingAlgorithm instance;
+    private static final Lock lock = new ReentrantLock();
+    private static final AtomicBoolean created = new AtomicBoolean(false);
+
     private static final int WORKERS = 4;
+
+    private QuickSort() {
+
+    }
+
+    public static SortingAlgorithm getInstance() {
+        if (!created.get()) {
+            try {
+                lock.lock();
+                if (instance == null) {
+                    instance = new QuickSort();
+                    created.set(true);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        return instance;
+    }
 
     private static class QuickSortAction extends RecursiveAction {
 

@@ -2,16 +2,44 @@ package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.service.SortingAlgorithm;
+import com.innowise.ballsortingapp.service.SortingService;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MergeSort implements SortingAlgorithm {
 
+    private static SortingAlgorithm instance;
+    private static final Lock lock = new ReentrantLock();
+    private static final AtomicBoolean created = new AtomicBoolean(false);
+
     private static final int WORKERS = 4;
+
+    private MergeSort() {
+
+    }
+
+    public static SortingAlgorithm getInstance() {
+        if (!created.get()) {
+            try {
+                lock.lock();
+                if (instance == null) {
+                    instance = new MergeSort();
+                    created.set(true);
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        return instance;
+    }
 
     private static class MergeSortAction extends RecursiveAction {
 
