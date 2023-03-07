@@ -40,20 +40,15 @@ public class SortingServiceImpl implements SortingService {
     }
 
     @Override
-    public void sort(Basket basket, Comparator<Ball> ballComparator, SortingAlgorithm sortingAlgorithm) {
-        try {
-            if (basket != null && ballComparator != null && sortingAlgorithm != null) {
-                sortingAlgorithm.sort(basket.getBalls(), ballComparator);
-            } else if (basket == null) {
-                throw new ServiceException("basket not specified");
-            } else if (ballComparator == null) {
-                throw new ServiceException("sorting parameter not specified");
-            } else {
-                throw new ServiceException("sorting algorithm not specified");
-            }
-        } catch (ServiceException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException(e);
+    public void sort(Basket basket, Comparator<Ball> ballComparator, SortingAlgorithm sortingAlgorithm) throws ServiceException {
+        if (basket != null && ballComparator != null && sortingAlgorithm != null) {
+            sortingAlgorithm.sort(basket.getBalls(), ballComparator);
+        } else if (basket == null) {
+            throw new ServiceException("basket not specified");
+        } else if (ballComparator == null) {
+            throw new ServiceException("sorting parameter not specified");
+        } else {
+            throw new ServiceException("sorting algorithm not specified");
         }
     }
 }

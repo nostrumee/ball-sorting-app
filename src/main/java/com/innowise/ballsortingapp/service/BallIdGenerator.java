@@ -1,10 +1,12 @@
 package com.innowise.ballsortingapp.service;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class BallIdGenerator {
 
-    private static long id = 1;
+    private static final AtomicLong id = new AtomicLong(1);
 
     public static long getId() {
-        return id++;
+        return id.getAndIncrement();
     }
 }

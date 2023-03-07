@@ -2,11 +2,10 @@ package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.RepositoryException;
+import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.service.BallService;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,12 +42,12 @@ public class BallServiceImpl  implements BallService {
     }
 
     @Override
-    public List<Ball> getAll() {
+    public List<Ball> getAll() throws ServiceException {
         try {
             return ballRepository.findAll();
         } catch (RepositoryException e) {
             log.error(e.getMessage());
-            throw new RuntimeException(e);
+            throw new ServiceException(e);
         }
     }
 }
