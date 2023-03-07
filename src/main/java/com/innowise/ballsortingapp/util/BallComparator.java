@@ -35,5 +35,4 @@ public class BallComparator {
     public static Comparator<Ball> byPrice() {
         return BY_PRICE;
     }
-
 }

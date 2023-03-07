@@ -1,6 +1,7 @@
 package com.innowise.ballsortingapp.exception;
 
 public class ServiceException extends Exception {
+
     public ServiceException() {
         super();
     }

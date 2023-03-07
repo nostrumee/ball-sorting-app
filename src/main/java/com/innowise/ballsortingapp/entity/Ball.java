@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class Ball {
+
     private long id;
     private Type type;
     private Producer producer;

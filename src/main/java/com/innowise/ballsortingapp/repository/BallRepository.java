@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface BallRepository {
 
     List<Ball> findAll() throws RepositoryException;
-
 }

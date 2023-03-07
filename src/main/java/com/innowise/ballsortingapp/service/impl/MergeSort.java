@@ -2,7 +2,6 @@ package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.service.SortingAlgorithm;
-import com.innowise.ballsortingapp.service.SortingService;
 
 import java.util.ArrayList;
 import java.util.Comparator;

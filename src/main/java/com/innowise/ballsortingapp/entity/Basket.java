@@ -8,5 +8,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class Basket {
+
     private List<Ball> balls;
 }

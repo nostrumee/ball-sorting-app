@@ -1,6 +1,7 @@
 package com.innowise.ballsortingapp.exception;
 
 public class RepositoryException extends Exception {
+
     public RepositoryException() {
         super();
     }
