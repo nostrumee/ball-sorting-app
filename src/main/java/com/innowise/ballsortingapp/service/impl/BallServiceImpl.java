@@ -1,11 +1,10 @@
 package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
-import com.innowise.ballsortingapp.exception.BallsNotFoundException;
+import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.service.BallService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
@@ -42,13 +41,8 @@ public class BallServiceImpl  implements BallService {
     @Override
     public List<Ball> getAll() {
         try {
-            List<Ball> balls = ballRepository.findAll();
-            if (balls != null && !balls.isEmpty()) {
-                return new ArrayList<>(balls);
-            } else {
-                throw new BallsNotFoundException("Balls nof found");
-            }
-        } catch (BallsNotFoundException e) {
+            return ballRepository.findAll();
+        } catch (RepositoryException e) {
             //log.error(e.getMessage())
             throw new RuntimeException(e);
         }

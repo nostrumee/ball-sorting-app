@@ -4,6 +4,7 @@ import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.entity.Color;
 import com.innowise.ballsortingapp.entity.Producer;
 import com.innowise.ballsortingapp.entity.Type;
+import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 
 import java.math.BigDecimal;
@@ -62,7 +63,11 @@ public class BallRepositoryImpl implements BallRepository {
     }
 
     @Override
-    public List<Ball> findAll() {
-        return balls;
+    public List<Ball> findAll() throws RepositoryException {
+        if (balls != null && balls.isEmpty()) {
+            return balls;
+        } else {
+            throw new RepositoryException("can't get any balls from repository");
+        }
     }
 }
