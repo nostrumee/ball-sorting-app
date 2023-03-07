@@ -34,9 +34,9 @@ public class MergeSort implements SortingAlgorithm {
                 invokeAll(new MergeSortAction(left, ballComparator, threshold),
                         new MergeSortAction(right, ballComparator, threshold));
                 merge(left, right);
+            } else {
+                mergeSort(balls);
             }
-
-            mergeSort(balls);
         }
 
         private void mergeSort(List<Ball> balls) {
@@ -73,7 +73,6 @@ public class MergeSort implements SortingAlgorithm {
                 balls.set(k++, right.get(j++));
             }
         }
-
     }
 
     @Override
