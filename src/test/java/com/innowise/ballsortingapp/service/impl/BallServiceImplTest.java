@@ -1,7 +1,6 @@
 package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
-import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.repository.impl.BallRepositoryImpl;

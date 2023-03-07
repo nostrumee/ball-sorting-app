@@ -39,7 +39,8 @@ public class BallRepositoryImpl implements BallRepository {
                 new Ball(Type.BASEBALL, Producer.SELECT, Color.PURPLE, 9, new BigDecimal("5.65")),
                 new Ball(Type.HANDBALL, Producer.MOLTEN, Color.GREEN, 5, new BigDecimal("22.55")),
                 new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 4, new BigDecimal("15.64")),
-                new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 5, new BigDecimal("15.64"))
+                new Ball(Type.FOOTBALL, Producer.WILSON, Color.YELLOW, 5, new BigDecimal("15.64")),
+                new Ball(Type.FOOTBALL, Producer.JOGEL, Color.RED, 5, new BigDecimal("15.2"))
         );
     }
 
