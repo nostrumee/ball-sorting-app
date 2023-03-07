@@ -4,12 +4,16 @@ import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.service.BallService;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+@Log4j2
 public class BallServiceImpl  implements BallService {
 
     private static BallService instance;
@@ -43,7 +47,7 @@ public class BallServiceImpl  implements BallService {
         try {
             return ballRepository.findAll();
         } catch (RepositoryException e) {
-            //log.error(e.getMessage())
+            log.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
