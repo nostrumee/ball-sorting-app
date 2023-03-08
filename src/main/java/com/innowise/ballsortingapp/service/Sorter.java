@@ -5,7 +5,7 @@ import com.innowise.ballsortingapp.entity.Ball;
 import java.util.Comparator;
 import java.util.List;
 
-public interface SortingAlgorithm {
+public interface Sorter {
 
     void sort(List<Ball> balls, Comparator<Ball> ballComparator);
 

@@ -8,6 +8,6 @@ import java.util.Comparator;
 
 public interface SortingService {
 
-    void sort(Basket basket, Comparator<Ball> ballComparator, SortingAlgorithm sortingAlgorithm) throws ServiceException;
+    void sort(Basket basket, Comparator<Ball> ballComparator, Sorter sorter) throws ServiceException;
 
 }

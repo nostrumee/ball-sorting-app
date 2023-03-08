@@ -3,7 +3,7 @@ package com.innowise.ballsortingapp.service.impl;
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.entity.Basket;
 import com.innowise.ballsortingapp.exception.ServiceException;
-import com.innowise.ballsortingapp.service.SortingAlgorithm;
+import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.service.SortingService;
 
 import java.util.Comparator;
@@ -38,9 +38,9 @@ public class SortingServiceImpl implements SortingService {
     }
 
     @Override
-    public void sort(Basket basket, Comparator<Ball> ballComparator, SortingAlgorithm sortingAlgorithm) throws ServiceException {
-        if (basket != null && ballComparator != null && sortingAlgorithm != null) {
-            sortingAlgorithm.sort(basket.getBalls(), ballComparator);
+    public void sort(Basket basket, Comparator<Ball> ballComparator, Sorter sorter) throws ServiceException {
+        if (basket != null && ballComparator != null && sorter != null) {
+            sorter.sort(basket.getBalls(), ballComparator);
         } else if (basket == null) {
             throw new ServiceException("basket not specified");
         } else if (ballComparator == null) {

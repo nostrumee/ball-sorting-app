@@ -2,7 +2,7 @@ package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.*;
 import com.innowise.ballsortingapp.exception.ServiceException;
-import com.innowise.ballsortingapp.service.SortingAlgorithm;
+import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.service.SortingService;
 import com.innowise.ballsortingapp.util.BallComparator;
 import lombok.extern.log4j.Log4j2;
@@ -19,10 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Log4j2
 public class SortingServiceImplTest {
 
-    private static Basket basket;
-    private static List<Ball> balls;
-    private static SortingAlgorithm mergeSort;
-    private static SortingAlgorithm quickSort;
+    private  Basket basket;
+    private  List<Ball> balls;
+    private static Sorter mergeSort;
+    private static Sorter quickSort;
     private static SortingService sortingService;
 
     @BeforeEach

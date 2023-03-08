@@ -1,7 +1,7 @@
 package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.entity.Ball;
-import com.innowise.ballsortingapp.service.SortingAlgorithm;
+import com.innowise.ballsortingapp.service.Sorter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,9 +12,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MergeSort implements SortingAlgorithm {
+public class MergeSort implements Sorter {
 
-    private static SortingAlgorithm instance;
+    private static Sorter instance;
     private static final Lock lock = new ReentrantLock();
     private static final AtomicBoolean created = new AtomicBoolean(false);
 
@@ -24,7 +24,7 @@ public class MergeSort implements SortingAlgorithm {
 
     }
 
-    public static SortingAlgorithm getInstance() {
+    public static Sorter getInstance() {
         if (!created.get()) {
             try {
                 lock.lock();
