@@ -1,7 +1,6 @@
 package com.innowise.ballsortingapp.service.impl;
 
 import com.innowise.ballsortingapp.service.IdGenerator;
-import com.innowise.ballsortingapp.service.Sorter;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
