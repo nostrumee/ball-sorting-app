@@ -19,15 +19,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Log4j2
 public class SortingServiceImplTest {
 
-    private  Basket basket;
-    private  List<Ball> balls;
+    private Basket basket;
     private static Sorter mergeSort;
     private static Sorter quickSort;
     private static SortingService sortingService;
 
     @BeforeEach
     public void setUp() {
-        balls = Arrays.asList(
+        List<Ball> balls = Arrays.asList(
                 new Ball(Type.BASEBALL, Producer.MIKASA, Color.GREEN, 1, new BigDecimal("1.36")),
                 new Ball(Type.FOOTBALL, Producer.MOLTEN, Color.PURPLE, 4, new BigDecimal("10.54")),
                 new Ball(Type.BASEBALL, Producer.SELECT, Color.GREEN, 2, new BigDecimal("30.56")),
@@ -49,12 +48,12 @@ public class SortingServiceImplTest {
     public void testMergeSortBySize() {
         try {
             sortingService.sort(basket, BallComparator.bySize(), mergeSort);
-            assertEquals(1, balls.get(0).getSize());
-            assertEquals(2, balls.get(1).getSize());
-            assertEquals(3, balls.get(2).getSize());
-            assertEquals(4, balls.get(3).getSize());
-            assertEquals(6, balls.get(4).getSize());
-            assertEquals(9, balls.get(5).getSize());
+            assertEquals(1, basket.getBalls().get(0).getSize());
+            assertEquals(2, basket.getBalls().get(1).getSize());
+            assertEquals(3, basket.getBalls().get(2).getSize());
+            assertEquals(4, basket.getBalls().get(3).getSize());
+            assertEquals(6, basket.getBalls().get(4).getSize());
+            assertEquals(9, basket.getBalls().get(5).getSize());
         } catch (ServiceException e) {
             log.error(e.getMessage());
         }
@@ -64,12 +63,12 @@ public class SortingServiceImplTest {
     public void testQuickSortByColor() {
         try {
             sortingService.sort(basket, BallComparator.byColor(), quickSort);
-            assertEquals(Color.RED, balls.get(0).getColor());
-            assertEquals(Color.ORANGE, balls.get(1).getColor());
-            assertEquals(Color.GREEN, balls.get(2).getColor());
-            assertEquals(Color.GREEN, balls.get(3).getColor());
-            assertEquals(Color.PURPLE, balls.get(4).getColor());
-            assertEquals(Color.PURPLE, balls.get(5).getColor());
+            assertEquals(Color.RED, basket.getBalls().get(0).getColor());
+            assertEquals(Color.ORANGE, basket.getBalls().get(1).getColor());
+            assertEquals(Color.GREEN, basket.getBalls().get(2).getColor());
+            assertEquals(Color.GREEN, basket.getBalls().get(3).getColor());
+            assertEquals(Color.PURPLE, basket.getBalls().get(4).getColor());
+            assertEquals(Color.PURPLE, basket.getBalls().get(5).getColor());
         } catch (ServiceException e) {
             log.error(e.getMessage());
         }
