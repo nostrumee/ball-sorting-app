@@ -1,6 +1,5 @@
 package com.innowise.ballsortingapp.service.impl;
 
-import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.service.Sorter;
 
 import java.util.ArrayList;
@@ -40,71 +39,71 @@ public class MergeSort implements Sorter {
         return instance;
     }
 
-    private static class MergeSortAction extends RecursiveAction {
+    private static class MergeSortAction<T> extends RecursiveAction {
 
         private final int threshold;
-        private final List<Ball> balls;
-        private final Comparator<Ball> ballComparator;
+        private final List<T> elements;
+        private final Comparator<T> comparator;
 
-        public MergeSortAction(List<Ball> balls, Comparator<Ball> ballComparator, int threshold) {
-            this.balls = balls;
-            this.ballComparator = ballComparator;
+        public MergeSortAction(List<T> elements, Comparator<T> comparator, int threshold) {
+            this.elements = elements;
+            this.comparator = comparator;
             this.threshold = threshold;
         }
 
         @Override
         public void compute() {
-            if (balls.size() >= threshold && balls.size() > 1) {
-                int mid = balls.size() / 2;
-                List<Ball> left = new ArrayList<>(balls.subList(0, mid));
-                List<Ball> right = new ArrayList<>(balls.subList(mid, balls.size()));
-                invokeAll(new MergeSortAction(left, ballComparator, threshold),
-                        new MergeSortAction(right, ballComparator, threshold));
+            if (elements.size() >= threshold && elements.size() > 1) {
+                int mid = elements.size() / 2;
+                List<T> left = new ArrayList<>(elements.subList(0, mid));
+                List<T> right = new ArrayList<>(elements.subList(mid, elements.size()));
+                invokeAll(new MergeSortAction<>(left, comparator, threshold),
+                        new MergeSortAction<>(right, comparator, threshold));
                 merge(left, right);
             } else {
-                mergeSort(balls);
+                mergeSort(elements);
             }
         }
 
-        private void mergeSort(List<Ball> balls) {
-            if (balls.size() < 2) {
+        private void mergeSort(List<T> elements) {
+            if (elements.size() < 2) {
                 return;
             }
 
-            int mid = balls.size() / 2;
-            List<Ball> left = new ArrayList<>(balls.subList(0, mid));
-            List<Ball> right = new ArrayList<>(balls.subList(mid, balls.size()));
+            int mid = elements.size() / 2;
+            List<T> left = new ArrayList<>(elements.subList(0, mid));
+            List<T> right = new ArrayList<>(elements.subList(mid, elements.size()));
             mergeSort(left);
             mergeSort(right);
             merge(left, right);
         }
 
-        private void merge(List<Ball> left, List<Ball> right) {
+        private void merge(List<T> left, List<T> right) {
             int i = 0;
             int j = 0;
             int k = 0;
 
             while (i < left.size() && j < right.size()) {
-                if (ballComparator.compare(left.get(i), right.get(j)) < 0) {
-                    balls.set(k++, left.get(i++));
+                if (comparator.compare(left.get(i), right.get(j)) < 0) {
+                    elements.set(k++, left.get(i++));
                 } else {
-                    balls.set(k++, right.get(j++));
+                    elements.set(k++, right.get(j++));
                 }
             }
 
             while (i < left.size()) {
-                balls.set(k++, left.get(i++));
+                elements.set(k++, left.get(i++));
             }
 
             while (j < right.size()) {
-                balls.set(k++, right.get(j++));
+                elements.set(k++, right.get(j++));
             }
         }
     }
 
     @Override
-    public void sort(List<Ball> balls, Comparator<Ball> ballComparator) {
-        int threshold = balls.size() / WORKERS;
-        ForkJoinPool.commonPool().invoke(new MergeSortAction(balls, ballComparator, threshold));
+    public <T> void sort(List<T> elements, Comparator<T> comparator) {
+        int threshold = elements.size() / WORKERS;
+        ForkJoinPool.commonPool().invoke(new MergeSortAction<>(elements, comparator, threshold));
     }
 }

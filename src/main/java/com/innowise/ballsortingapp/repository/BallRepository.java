@@ -4,7 +4,6 @@ import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.RepositoryException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BallRepository {
 

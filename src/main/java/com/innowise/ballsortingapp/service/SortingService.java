@@ -1,13 +1,12 @@
 package com.innowise.ballsortingapp.service;
 
-import com.innowise.ballsortingapp.entity.Ball;
-import com.innowise.ballsortingapp.entity.Basket;
 import com.innowise.ballsortingapp.exception.ServiceException;
 
 import java.util.Comparator;
+import java.util.List;
 
 public interface SortingService {
 
-    void sort(Basket basket, Comparator<Ball> ballComparator, Sorter sorter) throws ServiceException;
+    <T> void sort(List<T> elements, Comparator<T> comparator, Sorter sorter) throws ServiceException;
 
 }

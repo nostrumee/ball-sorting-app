@@ -40,17 +40,17 @@ public class QuickSort implements Sorter {
         return instance;
     }
 
-    private static class QuickSortAction extends RecursiveAction {
+    private static class QuickSortAction<T> extends RecursiveAction {
 
         private final int threshold;
         private final int low;
         private final int high;
-        private final List<Ball> balls;
-        private final Comparator<Ball> ballComparator;
+        private final List<T> elements;
+        private final Comparator<T> comparator;
 
-        public QuickSortAction(List<Ball> balls, Comparator<Ball> ballComparator, int low, int high, int threshold) {
-            this.balls = balls;
-            this.ballComparator = ballComparator;
+        public QuickSortAction(List<T> elements, Comparator<T> comparator, int low, int high, int threshold) {
+            this.elements = elements;
+            this.comparator = comparator;
             this.low = low;
             this.high = high;
             this.threshold = threshold;
@@ -59,33 +59,33 @@ public class QuickSort implements Sorter {
         @Override
         public void compute() {
             if (high - low >= threshold) {
-                int pivot = partition(balls, low, high, ballComparator);
-                invokeAll(new QuickSortAction(balls, ballComparator, low, pivot, threshold),
-                        new QuickSortAction(balls, ballComparator, pivot + 1, high, threshold));
+                int pivot = partition(elements, low, high, comparator);
+                invokeAll(new QuickSortAction<>(elements, comparator, low, pivot, threshold),
+                        new QuickSortAction<>(elements, comparator, pivot + 1, high, threshold));
             } else {
-                quickSort(balls, low, high, ballComparator);
+                quickSort(elements, low, high, comparator);
             }
         }
 
-        private void quickSort(List<Ball> balls, int low, int high, Comparator<Ball> ballComparator) {
+        private void quickSort(List<T> elements, int low, int high, Comparator<T> comparator) {
             if (low < high) {
-                int pivot = partition(balls, low, high, ballComparator);
-                quickSort(balls, low, pivot, ballComparator);
-                quickSort(balls, pivot + 1, high, ballComparator);
+                int pivot = partition(elements, low, high, comparator);
+                quickSort(elements, low, pivot, comparator);
+                quickSort(elements, pivot + 1, high, comparator);
             }
         }
 
-        private int partition(List<Ball> balls, int low, int high, Comparator<Ball> ballComparator) {
-            Ball pivotBall = balls.get(low);
+        private int partition(List<T> balls, int low, int high, Comparator<T> comparator) {
+            T pivot = elements.get(low);
             int i = low;
             int j = high;
 
             while (true) {
-                while (ballComparator.compare(balls.get(i), pivotBall) < 0) {
+                while (comparator.compare(balls.get(i), pivot) < 0) {
                     i++;
                 }
 
-                while (ballComparator.compare(balls.get(j), pivotBall) > 0) {
+                while (comparator.compare(balls.get(j), pivot) > 0) {
                     j--;
                 }
 
@@ -101,8 +101,8 @@ public class QuickSort implements Sorter {
     }
 
     @Override
-    public void sort(List<Ball> balls, Comparator<Ball> ballComparator) {
-        int threshold = balls.size() / WORKERS;
-        ForkJoinPool.commonPool().invoke(new QuickSortAction(balls, ballComparator, 0, balls.size() - 1, threshold));
+    public <T> void sort(List<T> elements, Comparator<T> comparator) {
+        int threshold = elements.size() / WORKERS;
+        ForkJoinPool.commonPool().invoke(new QuickSortAction<>(elements, comparator, 0, elements.size() - 1, threshold));
     }
 }

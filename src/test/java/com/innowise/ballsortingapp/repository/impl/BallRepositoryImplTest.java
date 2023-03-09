@@ -5,6 +5,7 @@ import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,10 +16,10 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 @Log4j2
 public class BallRepositoryImplTest {
 
-    private static BallRepository ballRepository;
+    private BallRepository ballRepository;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         ballRepository = BallRepositoryImpl.getInstance();
     }
 

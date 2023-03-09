@@ -6,7 +6,6 @@ import com.innowise.ballsortingapp.entity.Producer;
 import com.innowise.ballsortingapp.entity.Type;
 import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.util.BallComparator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,16 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class QuickSortTest {
 
     private List<Ball> balls;
-    private static Sorter sorter;
+    private Sorter sorter;
     private List<Ball> expected;
-
-    @BeforeAll
-    static void setSorter() {
-        sorter = QuickSort.getInstance();
-    }
 
     @BeforeEach
     void setUp() {
+        sorter = QuickSort.getInstance();
         balls = Arrays.asList(
                 new Ball(Type.BASEBALL, Producer.MIKASA, Color.GREEN, 1, new BigDecimal("1.36")),
                 new Ball(Type.FOOTBALL, Producer.MOLTEN, Color.PURPLE, 4, new BigDecimal("10.54")),
@@ -46,39 +41,39 @@ public class QuickSortTest {
     void testSortByType() {
         sorter.sort(balls, BallComparator.byType());
         expected.sort(BallComparator.byType());
-        assertEquals(balls.stream().map(Ball::getType).collect(Collectors.toList()),
-                expected.stream().map(Ball::getType).collect(Collectors.toList()));
+        assertEquals(expected.stream().map(Ball::getType).collect(Collectors.toList()),
+                balls.stream().map(Ball::getType).collect(Collectors.toList()));
     }
 
     @Test
     void testSortByProducer() {
         sorter.sort(balls, BallComparator.byProducer());
         expected.sort(BallComparator.byProducer());
-        assertEquals(balls.stream().map(Ball::getProducer).collect(Collectors.toList()),
-                expected.stream().map(Ball::getProducer).collect(Collectors.toList()));
+        assertEquals(expected.stream().map(Ball::getProducer).collect(Collectors.toList()),
+                balls.stream().map(Ball::getProducer).collect(Collectors.toList()));
     }
 
     @Test
     void testSortByColor() {
         sorter.sort(balls, BallComparator.byColor());
         expected.sort(BallComparator.byColor());
-        assertEquals(balls.stream().map(Ball::getColor).collect(Collectors.toList()),
-                expected.stream().map(Ball::getColor).collect(Collectors.toList()));
+        assertEquals(expected.stream().map(Ball::getColor).collect(Collectors.toList()),
+                balls.stream().map(Ball::getColor).collect(Collectors.toList()));
     }
 
     @Test
     void testSortBySize() {
         sorter.sort(balls, BallComparator.bySize());
         expected.sort(BallComparator.bySize());
-        assertEquals(balls.stream().map(Ball::getSize).collect(Collectors.toList()),
-                expected.stream().map(Ball::getSize).collect(Collectors.toList()));
+        assertEquals(expected.stream().map(Ball::getSize).collect(Collectors.toList()),
+                balls.stream().map(Ball::getSize).collect(Collectors.toList()));
     }
 
     @Test
     void testSortByPrice() {
         sorter.sort(balls, BallComparator.byPrice());
         expected.sort(BallComparator.byPrice());
-        assertEquals(balls.stream().map(Ball::getPrice).collect(Collectors.toList()),
-                expected.stream().map(Ball::getPrice).collect(Collectors.toList()));
+        assertEquals(expected.stream().map(Ball::getPrice).collect(Collectors.toList()),
+                balls.stream().map(Ball::getPrice).collect(Collectors.toList()));
     }
 }
