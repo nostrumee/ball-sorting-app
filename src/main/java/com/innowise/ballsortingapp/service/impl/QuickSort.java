@@ -1,6 +1,5 @@
 package com.innowise.ballsortingapp.service.impl;
 
-import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.service.Sorter;
 
 import java.util.Collections;

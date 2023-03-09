@@ -1,6 +1,5 @@
 package com.innowise.ballsortingapp.service.impl;
 
-import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.service.SortingService;

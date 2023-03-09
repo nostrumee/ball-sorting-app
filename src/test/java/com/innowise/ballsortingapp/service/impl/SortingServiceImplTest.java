@@ -8,7 +8,6 @@ import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.service.SortingService;
 import com.innowise.ballsortingapp.util.BallComparator;
-import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@Log4j2
 public class SortingServiceImplTest {
 
     private List<Ball> balls;

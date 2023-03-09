@@ -3,8 +3,7 @@ package com.innowise.ballsortingapp.repository.impl;
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
-import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.BeforeAll;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
-@Log4j2
+@Slf4j
 public class BallRepositoryImplTest {
 
     private BallRepository ballRepository;

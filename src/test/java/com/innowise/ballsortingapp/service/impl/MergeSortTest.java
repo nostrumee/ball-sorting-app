@@ -6,7 +6,6 @@ import com.innowise.ballsortingapp.entity.Producer;
 import com.innowise.ballsortingapp.entity.Type;
 import com.innowise.ballsortingapp.service.Sorter;
 import com.innowise.ballsortingapp.util.BallComparator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

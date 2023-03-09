@@ -8,21 +8,19 @@ import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.service.BallService;
-import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.BeforeAll;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
-@Log4j2
+@Slf4j
 public class BallServiceImplTest {
 
     private BallService ballService;

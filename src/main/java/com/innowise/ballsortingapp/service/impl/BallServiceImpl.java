@@ -5,14 +5,14 @@ import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.exception.ServiceException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.service.BallService;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-@Log4j2
+@Slf4j
 public class BallServiceImpl  implements BallService {
 
     private static BallService instance;
