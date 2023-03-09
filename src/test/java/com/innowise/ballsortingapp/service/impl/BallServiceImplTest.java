@@ -18,17 +18,16 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 @Log4j2
 public class BallServiceImplTest {
 
-    private static BallRepository ballRepository;
     private static BallService ballService;
 
     @BeforeAll
-    public static void setUp() {
-        ballRepository = BallRepositoryImpl.getInstance();
+    static void setUp() {
+        BallRepository ballRepository = BallRepositoryImpl.getInstance();
         ballService = BallServiceImpl.getInstance(ballRepository);
     }
 
     @Test
-    public void testGetAll() {
+    void testGetAll() {
         try {
             List<Ball> balls = ballService.getAll();
             MatcherAssert.assertThat(balls.size(), greaterThanOrEqualTo(1));
@@ -36,5 +35,4 @@ public class BallServiceImplTest {
             log.error(e.getMessage());
         }
     }
-
 }

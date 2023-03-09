@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,12 +22,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SortingServiceImplTest {
 
     private Basket basket;
+    private Basket expected;
     private static Sorter mergeSort;
     private static Sorter quickSort;
     private static SortingService sortingService;
 
+    @BeforeAll
+    static void setSorters() {
+        mergeSort = MergeSort.getInstance();
+        quickSort = QuickSort.getInstance();
+        sortingService = SortingServiceImpl.getInstance();
+    }
+
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         List<Ball> balls = Arrays.asList(
                 new Ball(Type.BASEBALL, Producer.MIKASA, Color.GREEN, 1, new BigDecimal("1.36")),
                 new Ball(Type.FOOTBALL, Producer.MOLTEN, Color.PURPLE, 4, new BigDecimal("10.54")),
@@ -36,47 +45,35 @@ public class SortingServiceImplTest {
                 new Ball(Type.BASKETBALL, Producer.MOLTEN, Color.PURPLE, 9, new BigDecimal("22.55"))
         );
         basket = new Basket(balls);
-    }
-
-    @BeforeAll
-    public static void setSorting() {
-        mergeSort = MergeSort.getInstance();
-        quickSort = QuickSort.getInstance();
-        sortingService = SortingServiceImpl.getInstance();
+        expected = new Basket(balls);
     }
 
     @Test
-    public void testMergeSortBySize() {
+    void testMergeSortBySize() {
         try {
             sortingService.sort(basket, BallComparator.bySize(), mergeSort);
-            assertEquals(1, basket.getBalls().get(0).getSize());
-            assertEquals(2, basket.getBalls().get(1).getSize());
-            assertEquals(3, basket.getBalls().get(2).getSize());
-            assertEquals(4, basket.getBalls().get(3).getSize());
-            assertEquals(6, basket.getBalls().get(4).getSize());
-            assertEquals(9, basket.getBalls().get(5).getSize());
+            expected.getBalls().sort(BallComparator.bySize());
+            assertEquals(basket.getBalls().stream().map(Ball::getSize).collect(Collectors.toList()),
+                    expected.getBalls().stream().map(Ball::getSize).collect(Collectors.toList()));
         } catch (ServiceException e) {
             log.error(e.getMessage());
         }
     }
 
     @Test
-    public void testQuickSortByColor() {
+    void testQuickSortByColor() {
         try {
             sortingService.sort(basket, BallComparator.byColor(), quickSort);
-            assertEquals(Color.RED, basket.getBalls().get(0).getColor());
-            assertEquals(Color.ORANGE, basket.getBalls().get(1).getColor());
-            assertEquals(Color.GREEN, basket.getBalls().get(2).getColor());
-            assertEquals(Color.GREEN, basket.getBalls().get(3).getColor());
-            assertEquals(Color.PURPLE, basket.getBalls().get(4).getColor());
-            assertEquals(Color.PURPLE, basket.getBalls().get(5).getColor());
+            expected.getBalls().sort(BallComparator.byColor());
+            assertEquals(basket.getBalls().stream().map(Ball::getColor).collect(Collectors.toList()),
+                    expected.getBalls().stream().map(Ball::getColor).collect(Collectors.toList()));
         } catch (ServiceException e) {
             log.error(e.getMessage());
         }
     }
 
     @Test
-    public void testBasketNotSpecified() {
+    void testBasketNotSpecified() {
         ServiceException serviceException = assertThrows(ServiceException.class,
                 () -> sortingService.sort(null, BallComparator.byColor(), quickSort));
 
@@ -84,7 +81,7 @@ public class SortingServiceImplTest {
     }
 
     @Test
-    public void testParameterNotSpecified() {
+    void testParameterNotSpecified() {
         ServiceException serviceException = assertThrows(ServiceException.class,
                 () -> sortingService.sort(basket, null, quickSort));
 
@@ -92,7 +89,7 @@ public class SortingServiceImplTest {
     }
 
     @Test
-    public void testAlgorithmNotSpecified() {
+    void testAlgorithmNotSpecified() {
         ServiceException serviceException = assertThrows(ServiceException.class,
                 () -> sortingService.sort(basket, BallComparator.byColor(), null));
 

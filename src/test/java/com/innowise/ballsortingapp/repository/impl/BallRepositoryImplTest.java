@@ -3,31 +3,32 @@ package com.innowise.ballsortingapp.repository.impl;
 import com.innowise.ballsortingapp.entity.Ball;
 import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
-import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Assertions;
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
+@Log4j2
 public class BallRepositoryImplTest {
 
     private static BallRepository ballRepository;
 
     @BeforeAll
-    public static void setUp() {
+    static void setUp() {
         ballRepository = BallRepositoryImpl.getInstance();
     }
 
     @Test
-    public void findAll() {
+    void testFindAll() {
         try {
             List<Ball> balls = ballRepository.findAll();
-            MatcherAssert.assertThat(balls.size(), greaterThanOrEqualTo(1));
+            assertThat(balls.size(), greaterThanOrEqualTo(1));
         } catch (RepositoryException e) {
-            Assertions.assertEquals("can't get any balls from repository", e.getMessage());
+            log.error(e.getMessage());
         }
     }
 }

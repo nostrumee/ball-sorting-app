@@ -1,6 +1,5 @@
 package com.innowise.ballsortingapp.entity;
 
-import com.innowise.ballsortingapp.service.impl.BallIdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +9,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Ball {
 
-    private long id;
     private Type type;
     private Producer producer;
     private Color color;
@@ -18,7 +16,6 @@ public class Ball {
     private BigDecimal price;
 
     public Ball(Type type, Producer producer, Color color, int size, BigDecimal price) {
-        id = BallIdGenerator.getInstance().getId();
         this.type = type;
         this.producer = producer;
         this.color = color;

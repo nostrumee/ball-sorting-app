@@ -8,6 +8,7 @@ import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -67,7 +68,7 @@ public class BallRepositoryImpl implements BallRepository {
     @Override
     public List<Ball> findAll() throws RepositoryException {
         if (balls != null && !balls.isEmpty()) {
-            return balls;
+            return new ArrayList<>(balls);
         } else {
             throw new RepositoryException("can't get any balls from repository");
         }
