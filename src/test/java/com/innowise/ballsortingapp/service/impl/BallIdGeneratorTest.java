@@ -4,7 +4,6 @@ import com.innowise.ballsortingapp.exception.RepositoryException;
 import com.innowise.ballsortingapp.repository.BallRepository;
 import com.innowise.ballsortingapp.repository.impl.BallRepositoryImpl;
 import com.innowise.ballsortingapp.service.IdGenerator;
-import com.innowise.ballsortingapp.service.impl.BallIdGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

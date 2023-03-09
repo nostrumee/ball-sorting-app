@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Log4j2
 public class SortingServiceImplTest {
@@ -76,28 +77,25 @@ public class SortingServiceImplTest {
 
     @Test
     public void testBasketNotSpecified() {
-        try {
-            sortingService.sort(null, BallComparator.byColor(), quickSort);
-        } catch (ServiceException e) {
-            assertEquals("basket not specified", e.getMessage());
-        }
+        ServiceException serviceException = assertThrows(ServiceException.class,
+                () -> sortingService.sort(null, BallComparator.byColor(), quickSort));
+
+        assertEquals("basket not specified", serviceException.getMessage());
     }
 
     @Test
     public void testParameterNotSpecified() {
-        try {
-            sortingService.sort(basket, null, quickSort);
-        } catch (ServiceException e) {
-            assertEquals("sorting parameter not specified", e.getMessage());
-        }
+        ServiceException serviceException = assertThrows(ServiceException.class,
+                () -> sortingService.sort(basket, null, quickSort));
+
+        assertEquals("sorting parameter not specified", serviceException.getMessage());
     }
 
     @Test
     public void testAlgorithmNotSpecified() {
-        try {
-            sortingService.sort(basket, BallComparator.byColor(), null);
-        } catch (ServiceException e) {
-            assertEquals("sorting algorithm not specified", e.getMessage());
-        }
+        ServiceException serviceException = assertThrows(ServiceException.class,
+                () -> sortingService.sort(basket, BallComparator.byColor(), null));
+
+        assertEquals("sorting algorithm not specified", serviceException.getMessage());
     }
 }
